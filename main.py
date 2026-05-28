@@ -123,10 +123,66 @@ def fetch_where(field, op, payload):
     fetched_data = dbCursor.fetchall()
     for i in fetched_data:
         print(i)
-        
+
+def update_data(field, new_value, u_field, payload):
+    sql = f"UPDATE ZOOMANAGE SET {field} = {new_value} WHERE {u_field} = {payload}"
+    try:
+        dbCursor.execute(sql)
+        dataBase.commit()
+        print("Success!")
+    except:
+        print("ERROR")
+
+def delete_where(field, payload):
+    sql = f"DELETE FROM ZOOMANAGE WHERE {field} = {payload}"
+    try:
+        dbCursor.execute(sql)
+        dataBase.commit()
+        print("Deleted!")
+    except:
+        print("Error!")
 
 create_db()
 create_table()
+
+
+## MAIN FRONTEND:
+print("="*35)
+print("WELCOME TO ZOO MANAGEMENT SYSTEM V1")
+print("="*35)
+print("")
+print("Choose An Operation From Below:")
+print("")
+print("1. Fetch All The Data From The Database")
+print("2. Fetch With A Specific Constraint")
+print("3. Insert Single Record")
+print("4. Insert Multiple Records")
+print("5. Update Data")
+print("6. Delete Data")
+print("")
+
+choice = int(input("Enter A Choice (1-6): "))
+if choice == 1:
+    fetch_all()
+elif choice == 2:
+    field = input("Enter Cnstraint Field: ")
+    op = input("Enter Constraint Operation: ")
+    payload = input("Enter Target Value: ")
+    fetch_where(field, op, payload)
+elif choice == 3:
+    create_single_record()
+elif choice == 4:
+    create_multiple_records()
+elif choice == 5:
+    field = input("Enter Updation Field: ")
+    new_value = input("Enter new value (for string it must be 'value'): ")
+    u_field = input("Enter contraint field: ")
+    payload_1 = input("Enter contraint payload: ")
+    update_data(field, new_value, u_field, payload_1)
+elif choice == 6:
+    field = input("Enter contraint field for deletion: ")
+    payload_2 = input("Enter contraint payload for deletion: ")
+    delete_where(field, payload_2)
 
 dataBase.close()
 
