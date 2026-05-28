@@ -2,7 +2,9 @@
 ## Setup
 This readme assumes that mysql has already been installed in your system and the root user with password has been initalized.
 
-Initialize connection to the database:
+### Initialize connection to the database:
+
+- In main.py:
 ```python
     dataBase = mysql.connector.connect(
     host = "localhost",
