@@ -29,4 +29,3 @@ i.e
 ```sql
     SELECT * FROM ZOOMANAGE WHERE ZOO_COUNT > 200
 ```
-
